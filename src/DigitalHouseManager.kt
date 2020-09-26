@@ -52,13 +52,19 @@ class DigitalHouseManager {
     }
 
     fun alocarProfessores(idCurso: Int, idTitular: Int, idAdjunto: Int) {
-        val profTitular = this.listaProfessores.find { it.id == idTitular } as ProfessorTitular
-        val profAdjunto = this.listaProfessores.find { it.id == idAdjunto } as ProfessorAdjunto
-        val curso = this.listaCursos.find { it.id == idCurso }
+        val profTitular = this.listaProfessores.find { it.id == idTitular }
+        val profAdjunto = this.listaProfessores.find { it.id == idAdjunto }
 
-        val indexCurso = this.listaCursos.indexOf(curso)
+        this.listaCursos.find { it.id == idCurso }!!.professorAdjunto = profAdjunto as ProfessorAdjunto?
+        this.listaCursos.find { it.id == idCurso }!!.professorTitular = profTitular as ProfessorTitular?
+    }
 
-        this.listaCursos[indexCurso].professorTitular = profTitular
-        this.listaCursos[indexCurso].professorAdjunto = profAdjunto
+    override fun toString(): String {
+        return "DigitalHouseManager( \n " +
+                "listaAlunos=$listaAlunos, \n " +
+                "listaProfessores=$listaProfessores, \n " +
+                "listaCursos=$listaCursos, \n " +
+                " listaMatriculas=$listaMatriculas \n " +
+                ")"
     }
 }
