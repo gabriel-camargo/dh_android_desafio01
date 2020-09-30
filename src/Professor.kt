@@ -1,7 +1,10 @@
 abstract class Professor(
     val id: Int,
-    private val nome: String,
-    private val sobrenome: String
+    protected val nome: String,
+    protected val sobrenome: String
 ) {
     val tempoDeCasa = 0
+    override fun toString(): String {
+        return "Professor(id=$id, nome='$nome', sobrenome='$sobrenome', tempoDeCasa=$tempoDeCasa)"
+    }
 }

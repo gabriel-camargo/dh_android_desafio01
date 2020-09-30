@@ -19,4 +19,8 @@ class Curso(
     fun excluirAluno(aluno: Aluno) {
         this.alunosMatriculados.remove(aluno)
     }
+
+    override fun toString(): String {
+        return "Curso(id=$id, nome='$nome', qtdMaxAlunos=$qtdMaxAlunos, alunosMatriculados=$alunosMatriculados, professorTitular=$professorTitular, professorAdjunto=$professorAdjunto)"
+    }
 }
