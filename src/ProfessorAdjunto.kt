@@ -1,10 +1,10 @@
 class ProfessorAdjunto(
-    id: Int,
+    codigo: Int,
     nome: String,
     sobrenome: String,
     private val qtdHorasMonitoria: Int
-) : Professor(id, nome, sobrenome) {
+) : Professor(codigo, nome, sobrenome) {
     override fun toString(): String {
-        return "ProfessorAdjunto(id=$id, nome='$nome', sobrenome='$sobrenome', tempoDeCasa=$tempoDeCasa, qtdHorasMonitoria=$qtdHorasMonitoria)"
+        return "ProfessorAdjunto(id=$codigo, nome='$nome', sobrenome='$sobrenome', tempoDeCasa=$tempoDeCasa, qtdHorasMonitoria=$qtdHorasMonitoria)"
     }
 }

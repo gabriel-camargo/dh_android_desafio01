@@ -50,7 +50,7 @@ fun menuCursos() {
                 print("Informe a quantidade máxima de alunos permitidos no curso: ")
                 val qtdMaxAlunos = readLine()!!.toInt()
 
-                manager.registrarCurso(id, nome, qtdMaxAlunos)
+                manager.registrarCurso(nome, id, qtdMaxAlunos)
             }
             2 -> {
                 print("Digite o id do curso que será deletado, ou digite -1 para cancelar:")
@@ -119,7 +119,7 @@ fun menuProfessores() {
                 print("Informe a quantidade de horas do professor: ")
                 val qtdHoras = readLine()!!.toInt()
 
-                manager.registrarProfessorAdjunto(id, nome, sobrenome, qtdHoras)
+                manager.registrarProfessorAdjunto(nome, sobrenome, id, qtdHoras)
             }
             2 -> {
                 print("Informe o código do professor: ")
@@ -134,7 +134,7 @@ fun menuProfessores() {
                 print("Informe a especialidade do professor: ")
                 val especialidade = readLine()!!
 
-                manager.registrarProfessorTitular(id, nome, sobrenome, especialidade)
+                manager.registrarProfessorTitular(nome, sobrenome, id, especialidade)
             }
             3 -> {
                 print("Informe o código do professor, ou -1 para cancelar: ")
@@ -146,7 +146,8 @@ fun menuProfessores() {
             4 -> {
                 manager.listaProfessores.forEach {
                     println(it)
-                }            }
+                }
+            }
             0 -> break
 
             else -> println("Opção inválida!")
@@ -177,12 +178,13 @@ fun menuAlunos() {
                 print("Informe o sobrenome do aluno: ")
                 val sobrenome = readLine()!!
 
-                manager.registrarAluno(id, nome, sobrenome)
+                manager.matricularAluno(nome, sobrenome, id)
             }
             2 -> {
                 manager.listaAlunos.forEach {
                     println(it)
-                }            }
+                }
+            }
             0 -> break
             else -> println("Opção inválida!")
         }

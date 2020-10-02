@@ -6,48 +6,48 @@ class DigitalHouseManager {
     val listaCursos = mutableListOf<Curso>()
     val listaMatriculas = mutableListOf<Matricula>()
 
-    fun registrarCurso(id: Int, nome: String, qtdMaxAlunos: Int) {
-        this.listaCursos.add(Curso(id, nome, max(qtdMaxAlunos, 0)))
+    fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaAlunos: Int) {
+        this.listaCursos.add(Curso(codigoCurso, nome, max(quantidadeMaximaAlunos, 0)))
 
         println("Curso cadastrado com sucesso!")
     }
 
-    fun excluirCurso(idCurso: Int) {
-        val curso = listaCursos.find { it.id == idCurso }
+    fun excluirCurso(codigoCurso: Int) {
+        val curso = listaCursos.find { it.codigo == codigoCurso }
         this.listaCursos.remove(curso)
 
         println("Curso removido com sucesso!")
     }
 
-    fun registrarProfessorAdjunto(id: Int, nome: String, sobrenome: String, qtdHoras: Int) {
-        this.listaProfessores.add(ProfessorAdjunto(id, nome, sobrenome, qtdHoras))
+    fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int) {
+        this.listaProfessores.add(ProfessorAdjunto(codigoProfessor, nome, sobrenome, quantidadeDeHoras))
 
         println("Professor Adjunto cadastrado com sucesso!")
     }
 
-    fun registrarProfessorTitular(id: Int, nome: String, sobrenome: String, especialidade: String) {
-        this.listaProfessores.add(ProfessorTitular(id, nome, sobrenome, especialidade))
+    fun registrarProfessorTitular(nome: String, sobrenome: String, codigoProfessor: Int, especialidade: String) {
+        this.listaProfessores.add(ProfessorTitular(codigoProfessor, nome, sobrenome, especialidade))
 
         println("Professor Titular cadastrado com sucesso!")
 
     }
 
-    fun excluirProfessor(idProfessor: Int) {
-        val professor = listaProfessores.find { idProfessor == it.id }
+    fun excluirProfessor(codigoProfessor: Int) {
+        val professor = listaProfessores.find { codigoProfessor == it.codigo }
         this.listaProfessores.remove(professor)
 
         println("Professor excluído com sucesso!")
     }
 
-    fun registrarAluno(id: Int, nome: String, sobrenome: String) {
-        this.listaAlunos.add(Aluno(id, nome, sobrenome))
+    fun matricularAluno(nome: String, sobrenome: String, codigoAluno: Int) {
+        this.listaAlunos.add(Aluno(codigoAluno, nome, sobrenome))
 
         println("Aluno registrado com sucesso!")
     }
 
-    fun matricularAluno(idAluno: Int, idCurso: Int) {
-        val aluno = this.listaAlunos.find { it.id == idAluno }
-        val curso = this.listaCursos.find { it.id == idCurso }
+    fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
+        val aluno = this.listaAlunos.find { it.codigo == codigoAluno }
+        val curso = this.listaCursos.find { it.codigo == codigoCurso }
 
         if (curso != null) {
             if (aluno != null) {
@@ -66,24 +66,24 @@ class DigitalHouseManager {
         }
     }
 
-    fun alocarProfessores(idCurso: Int, idTitular: Int, idAdjunto: Int) {
-        val profTitular = this.listaProfessores.find { it.id == idTitular }
-        val profAdjunto = this.listaProfessores.find { it.id == idAdjunto }
+    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
+        val profTitular = this.listaProfessores.find { it.codigo == codigoProfessorTitular }
+        val profAdjunto = this.listaProfessores.find { it.codigo == codigoProfessorAdjunto }
 
-        if(profTitular !is ProfessorTitular?) {
+        if (profTitular !is ProfessorTitular?) {
             println("O código informado para o professor titular é de um professor adjunto!")
 
             return
         }
-        if(profAdjunto !is ProfessorAdjunto?) {
+        if (profAdjunto !is ProfessorAdjunto?) {
             println("O código informado para o professor adjunto é de um professor titular!")
 
             return
         }
 
 
-        this.listaCursos.find { it.id == idCurso }!!.professorAdjunto = profAdjunto
-        this.listaCursos.find { it.id == idCurso }!!.professorTitular = profTitular
+        this.listaCursos.find { it.codigo == codigoCurso }!!.professorAdjunto = profAdjunto
+        this.listaCursos.find { it.codigo == codigoCurso }!!.professorTitular = profTitular
 
         println("Professores alocados com sucesso!")
     }

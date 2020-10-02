@@ -1,5 +1,5 @@
 data class Aluno(
-    val id: Int,
+    val codigo: Int,
     private val nome: String,
     private val sobrenome: String
 )
